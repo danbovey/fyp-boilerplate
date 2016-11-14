@@ -16,13 +16,6 @@ const router = (
     </Router>
 );
 
-ReactDOM.render(
-    <Provider store={store} key="provider">
-        {router}
-    </Provider>,
-    dest
-);
-
 if(typeof process.env.NODE_ENV != 'undefined' && process.env.NODE_ENV == 'development') {
     const DevTools = require('./containers/DevTools');
     ReactDOM.render(
@@ -31,6 +24,13 @@ if(typeof process.env.NODE_ENV != 'undefined' && process.env.NODE_ENV == 'develo
                 {router}
                 <DevTools />
             </div>
+        </Provider>,
+        dest
+    );
+} else {
+    ReactDOM.render(
+        <Provider store={store} key="provider">
+            {router}
         </Provider>,
         dest
     );
