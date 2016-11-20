@@ -24,7 +24,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loaders: ['react-hot', 'babel'], exclude: /node_modules/
+                loaders: ['babel'], exclude: /node_modules/
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
