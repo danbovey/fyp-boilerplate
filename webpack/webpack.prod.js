@@ -36,17 +36,28 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style',
-                    loader: 'css'
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
                 })
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style',
-                    loader: 'css!postcss!sass?outputStyle=compressed&imagePath=/assets/images&includePaths[]=' +
-                        path.resolve(__dirname, './assets/sass')
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: function() {
+                                    return [require('autoprefixer')];
+                                }
+                            }
+                        },
+                        'sass-loader?outputStyle=expanded&imagePath=/assets/images&includePaths[]=' +
+                            path.resolve('assets/sass')
+                    ]
                 })
             }
         ]
