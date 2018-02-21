@@ -28,21 +28,46 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-            },
-            {
-                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'file-loader'
-            },
-            {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!postcss!sass?outputStyle=expanded&imagePath=/assets/images&includePaths[]=' +
-                path.resolve(__dirname, './assets/sass')
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function() {
+                                return [require('autoprefixer')];
+                            }
+                        }
+                    },
+                    'sass-loader?outputStyle=expanded&imagePath=/static/img&includePaths[]=' +
+                        path.resolve('src/scss')
+                ]
+            },
+            {
+                test: /\.woff(2)?$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10000,
+                        mimetype: 'application/font-woff',
+                        publicPath: 'http://localhost:4000/static/'
+                    }
+                }]
+            },
+            {
+                test: /\.(otf|ttf|eot|svg)?$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10000,
+                        publicPath: 'http://localhost:4000/static/'
+                    }
+                }]
             }
         ]
     },
@@ -65,8 +90,5 @@ module.exports = {
         proxy: { '*': 'http://0.0.0.0:3000' },
         host: '0.0.0.0',
         port: 3000
-    },
-    postcss: function() {
-        return [autoprefixer];
     }
 };
