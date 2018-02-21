@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-    host: '0.0.0.0',
-    port: 3000,
     context: path.resolve('src'),
     entry: [
         'babel-polyfill',
@@ -18,13 +16,13 @@ module.exports = {
             'node_modules',
             'src'
         ],
-        extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.css'],
+        extensions: ['.js', '.jsx', '.scss', '.css'],
     },
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loaders: 'babel',
+                loaders: 'babel-loader',
                 exclude: /node_modules/
             },
             {
@@ -79,7 +77,7 @@ module.exports = {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
         })

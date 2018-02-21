@@ -18,21 +18,14 @@ module.exports = {
             'resources',
             'assets'
         ],
-        extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx', '.scss', '.css'],
+        extensions: ['.js', '.jsx', '.scss', '.css'],
     },
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loaders: ['babel'], exclude: /node_modules/
-            },
-            {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-            },
-            {
-                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'file-loader'
+                use: ['babel-loader'],
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/,
@@ -59,6 +52,21 @@ module.exports = {
                             path.resolve('assets/sass')
                     ]
                 })
+            },
+            {
+                test: /\.woff(2)?$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10000,
+                        mimetype: 'application/font-woff',
+                        publicPath: 'http://localhost:4000/static/'
+                    }
+                }]
+            },
+            {
+                test: /\.(otf|ttf|eot|svg)?$/,
+                use: ['file-loader']
             }
         ]
     },
@@ -78,8 +86,5 @@ module.exports = {
             sourceMaps: false
         }),
         new ExtractTextPlugin('style.css')
-    ],
-    postcss: function() {
-        return [autoprefixer];
-    }
+    ]
 };
