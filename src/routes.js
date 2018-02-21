@@ -13,7 +13,7 @@ export const schema = {
 export default store => (
   <App>
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" exact={true} component={Home} />
       <Route path="/about" component={About} />
     </Switch>
   </App>
