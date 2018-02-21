@@ -9,13 +9,14 @@ var server = new WebpackDevServer(webpack(config), {
     historyApiFallback: true
 });
 
-const port = process.env.NODE_ENV == 'development' ? 3000 : 80;
+const host = '0.0.0.0';
+const port = 3000;
 
-server.listen(port, '0.0.0.0', function(err) {
+server.listen(port, host, function(err) {
     if (err) {
         console.log(err);
     } else {
         console.log('==> 🚧  Webpack development server running!');
-        console.log(`==> 💻  Send requests to http://0.0.0.0:${port}`);
+        console.log(`==> 💻  Send requests to http://${host}:${port}`);
     }
 });
