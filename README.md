@@ -31,6 +31,15 @@ Press <kbd>Ctrl</kbd> + <kbd>H</kbd> to open the Redux Devtools.
 
 ### Run on production
 
+In production mode, webpack outputs to the `public` directory, allowing the production server to serve static files.
+
 ```
 npm run deploy
 ```
+
+### TODO
+
+Things I should add from my other projects to this boilerplate:
+
+- [ ] Async component for route chunking
+- [ ] Styled components instead of SCSS

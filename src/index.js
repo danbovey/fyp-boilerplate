@@ -7,6 +7,11 @@ import { configureStore } from 'store/configureStore';
 
 import getRoutes from 'routes';
 
+// To support a lot of browsers we should add this polyfill
+import 'babel-polyfill';
+
+// Place startup scripts here: Raven (Sentry), React-GA (Google Analytics) etc.
+
 const dest = document.getElementById('root');
 const store = configureStore();
 
