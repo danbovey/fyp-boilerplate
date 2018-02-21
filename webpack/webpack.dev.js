@@ -44,8 +44,8 @@ module.exports = {
                             }
                         }
                     },
-                    'sass-loader?outputStyle=expanded&imagePath=/static/img&includePaths[]=' +
-                        path.resolve('src/scss')
+                    'sass-loader?outputStyle=expanded&imagePath=/assets/images&includePaths[]=' +
+                        path.resolve('assets/sas')
                 ]
             },
             {
