@@ -3,6 +3,18 @@ main.home {
     text-align: center;
 
     h1 {
-        margin: 20px 0 60px;
+        margin: 20px 0;
+    }
+    ul {
+        margin-bottom: 30px;
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 }

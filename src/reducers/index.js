@@ -6,7 +6,7 @@ import count from './count';
  * http://redux.js.org/docs/api/combineReducers.html
  */
 const rootReducer = combineReducers({
-    count,
+  count
 });
 
 export default rootReducer;

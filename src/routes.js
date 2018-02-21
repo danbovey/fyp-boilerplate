@@ -1,19 +1,20 @@
 import React from 'react';
-import { IndexRoute, Route } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 
-import {
-    App,
-    Home
-} from 'containers';
+import App from 'containers/App';
+import Home from 'containers/Home';
+import About from 'containers/About';
 
 export const schema = {
-    'home': '/'
+  home: '/',
+  about: '/about'
 };
 
-export default (store) => {
-    return (
-        <Route component={App}>
-            <Route path="/" component={Home} />
-        </Route>
-    );
-};
+export default store => (
+  <App>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
+    </Switch>
+  </App>
+);
